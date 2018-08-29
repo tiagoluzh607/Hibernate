@@ -30,7 +30,7 @@ public class TesteConta {
 		em.close(); //tira todos os estados (Managed)
 		
 		
-		/* ##################### Fechamos o entity manager e vamos criar outro ################# */
+		/* ################################################ Fechamos o entity manager e vamos criar outro ################# */
 		
 		EntityManager em2 = new JPAUtil().getEntityManager();
 		em2.getTransaction().begin();
