@@ -5,7 +5,7 @@
     version="2.0">
 
     <!-- unidade de persistencia com o nome financas -->
-    <persistence-unit name="financasmysql">
+    <persistence-unit name="financas-mysql">
 
         <!-- Implementação do JPA, no nosso caso Hibernate -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
@@ -34,7 +34,7 @@
         </properties>
     </persistence-unit>
     
-    <persistence-unit name="financaspostgres" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="financas-postgres" transaction-type="RESOURCE_LOCAL">
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
