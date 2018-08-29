@@ -36,9 +36,21 @@ public class Movimentacao {
 	private Conta conta;
 	
 	@ManyToMany
-	private List<Categoria> categoria;
+	private List<Categoria> categorias;
 
 	
+	
+	
+
+	
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
 
 	public Conta getConta() {
 		return conta;

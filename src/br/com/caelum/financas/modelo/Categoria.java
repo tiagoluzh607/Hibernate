@@ -14,6 +14,15 @@ public class Categoria {
 	private String nome;
 	
 	
+	@Deprecated
+	public Categoria() { //hibernate precisa de um construtor vazio por isso marcamos deprecated, para o programador nao usar, somente o hibernate usará
+		super();
+	}
+	
+	public Categoria(String nome) {
+		super();
+		this.nome = nome;
+	}
 	public Integer getId() {
 		return id;
 	}
