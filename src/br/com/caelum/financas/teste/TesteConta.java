@@ -29,6 +29,22 @@ public class TesteConta {
 		
 		em.close(); //tira todos os estados (Managed)
 		
+		
+		/* ##################### Fechamos o entity manager e vamos criar outro ################# */
+		
+		EntityManager em2 = new JPAUtil().getEntityManager();
+		em2.getTransaction().begin();
+		
+		conta.setTitular("Teste de Merge"); // estado (Datached) pois existe um registro no banco
+		
+		//Tentando transformar para o estado (Managed)
+		
+		//em2.persist(conta); //erro pois o persist trabalha com o estado (Transient) e não com o Datached
+		em2.merge(conta); //merge tranforma um estado (Datached) em (Managed) buscando pelo id da conta
+		
+		em2.getTransaction().commit();
+		em2.close();
+			
 	}
 
 }
