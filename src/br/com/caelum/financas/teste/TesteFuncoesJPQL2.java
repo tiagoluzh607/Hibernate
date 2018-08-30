@@ -21,15 +21,18 @@ public class TesteFuncoesJPQL2 {
 		Conta conta = new Conta();
 		conta.setId(2);
 		
-		String jpql = "select avg(m.valor) from Movimentacao as m where m.conta = :pConta and m.tipo = :pTipo order by m.valor";
+		String jpql = "select avg(m.valor) from Movimentacao as m "
+					+ "where m.conta = :pConta and m.tipo = :pTipo group by day(m.data), month(m.data), year(m.data) ";
 		
 		Query query = em.createQuery(jpql);
 		query.setParameter("pConta", conta);
-		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
+		query.setParameter("pTipo", TipoMovimentacao.ENTRADA);
 		
-		Double media = (Double) query.getSingleResult();
+		List<Double> medias = (List<Double>) query.getResultList();
 		
-		System.out.println(media);
+		for (Double double1 : medias) {
+			System.out.println(double1);
+		}
 		
 		em.getTransaction().commit();
 		em.close();
