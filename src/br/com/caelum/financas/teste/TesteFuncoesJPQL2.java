@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.caelum.financas.modelo.Conta;
 import br.com.caelum.financas.modelo.Movimentacao;
@@ -24,7 +25,7 @@ public class TesteFuncoesJPQL2 {
 		String jpql = "select avg(m.valor) from Movimentacao as m "
 					+ "where m.conta = :pConta and m.tipo = :pTipo group by day(m.data), month(m.data), year(m.data) ";
 		
-		Query query = em.createQuery(jpql);
+		TypedQuery<Double> query = em.createQuery(jpql, Double.class);
 		query.setParameter("pConta", conta);
 		query.setParameter("pTipo", TipoMovimentacao.ENTRADA);
 		
