@@ -3,6 +3,7 @@ package br.com.caelum.financas.modelo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Conta {
 	private String numero;
 	private String banco;
 	private String agencia;
-	
+	//@OneToMany(mappedBy="conta", fetch = FetchType.EAGER) // o fetch EAGER faz com que quando buscada uma conta no banco traga junto na consulta as movimentações usando um join
 	@OneToMany(mappedBy="conta") //não é um novo relacionamento e sim apenas a outra parte de um relacionamento que esta na classe movimentacao na propriedade conta
 	private List<Movimentacao> movimentacoes;
 	
