@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import br.com.caelum.financas.modelo.Conta;
 import br.com.caelum.financas.modelo.Movimentacao;
+import br.com.caelum.financas.modelo.TipoMovimentacao;
 import br.com.caelum.financas.util.JPAUtil;
 
 public class TesteJPQL {
@@ -19,17 +20,18 @@ public class TesteJPQL {
 		Conta conta = new Conta();
 		conta.setId(2);
 		
-		String jpql = "select m from Movimentacao as m where m.conta = :pConta";
+		String jpql = "select m from Movimentacao as m where m.conta = :pConta and m.tipo = :pTipo order by m.valor";
 		
 		Query query = em.createQuery(jpql);
 		query.setParameter("pConta", conta);
+		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
 		
 		
 		
 		List<Movimentacao> movimentacoes = query.getResultList();
 		
 		for (Movimentacao movimentacao : movimentacoes) {
-			System.out.println(movimentacao.getId() + " - " + movimentacao.getDescricao() + " - " + movimentacao.getValor());
+			System.out.println(movimentacao.getId() + " - " + movimentacao.getDescricao() + " - "+movimentacao.getTipo()+" - "+ movimentacao.getValor());
 		}
 		
 		
