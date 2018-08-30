@@ -1,9 +1,12 @@
 package br.com.caelum.financas.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Conta {
@@ -15,6 +18,9 @@ public class Conta {
 	private String numero;
 	private String banco;
 	private String agencia;
+	
+	@OneToMany(mappedBy="conta") //não é um novo relacionamento e sim apenas a outra parte de um relacionamento que esta na classe movimentacao na propriedade conta
+	private List<Movimentacao> movimentacoes;
 	
 	
 	public Integer getId() {
@@ -46,6 +52,10 @@ public class Conta {
 	}
 	public void setAgencia(String agencia) {
 		this.agencia = agencia;
+	}
+	public List<Movimentacao> getMovimentacoes() {
+		// TODO Auto-generated method stub
+		return this.movimentacoes;
 	}
 	
 	
