@@ -17,7 +17,7 @@ public class TesteLazyLoading {
         em.getTransaction().begin();
 		
 		
-        String jpql = "select c from Conta as c join fetch c.movimentacoes"; //com join Fetch ele já vai trazer na primeira consulta as movimentacoes, eliminando o lazy loading
+        String jpql = "select distinct c from Conta as c left join fetch c.movimentacoes"; //com join Fetch ele já vai trazer na primeira consulta as movimentacoes, eliminando o lazy loading
         
         Query query = em.createQuery(jpql);
         List<Conta> todasAsContas = query.getResultList();
