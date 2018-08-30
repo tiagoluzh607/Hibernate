@@ -16,10 +16,15 @@ public class TesteJPQL {
 		EntityManager em = new JPAUtil().getEntityManager();
 		em.getTransaction().begin();
 
+		Conta conta = new Conta();
+		conta.setId(2);
 		
-		String jpql = "select m from Movimentacao as m where m.conta.id = 2";
+		String jpql = "select m from Movimentacao as m where m.conta = :pConta";
 		
 		Query query = em.createQuery(jpql);
+		query.setParameter("pConta", conta);
+		
+		
 		
 		List<Movimentacao> movimentacoes = query.getResultList();
 		
