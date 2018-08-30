@@ -21,15 +21,15 @@ public class TesteFuncoesJPQL2 {
 		Conta conta = new Conta();
 		conta.setId(2);
 		
-		String jpql = "select sum(m.valor) from Movimentacao as m where m.conta = :pConta and m.tipo = :pTipo order by m.valor";
+		String jpql = "select avg(m.valor) from Movimentacao as m where m.conta = :pConta and m.tipo = :pTipo order by m.valor";
 		
 		Query query = em.createQuery(jpql);
 		query.setParameter("pConta", conta);
 		query.setParameter("pTipo", TipoMovimentacao.SAIDA);
 		
-		BigDecimal soma = (BigDecimal) query.getSingleResult();
+		Double media = (Double) query.getSingleResult();
 		
-		System.out.println(soma);
+		System.out.println(media);
 		
 		em.getTransaction().commit();
 		em.close();
